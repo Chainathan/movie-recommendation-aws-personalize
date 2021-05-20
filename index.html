@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <title>Movie Recommendations</title>
     <!-- <script type="text/javascript" src="script.js"></script> -->
+    <link rel="stylesheet" href="style.css" />
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.899.0.min.js"></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script type="text/javascript">
@@ -16,10 +17,14 @@
       function getMovies() {
         // getting user id and item id(movie id) from input
         var userid = document.getElementById("userid").value;
+        if (isNaN(userid) || parseInt(userid) > 610 || parseInt(userid) < 1) {
+          alert("Enter a valid User Id");
+          return;
+        }
         var num_rec = document.getElementById("num").value;
         var n_rec = 5;
-        if (num_rec != "") n_rec = parseInt(num_rec);
-
+        if (!isNaN(num_rec) && parseInt(num_rec) > 1 && parseInt(num_rec) < 26)
+          n_rec = parseInt(num_rec);
         var listCampResponse;
         // JSON parameters for listCampaigns to get campaign ARN
         var listCampParams = {};
@@ -107,7 +112,7 @@
                       var row = document.createElement("tr");
                       row.setAttribute("id", tt);
                       var content = document.createElement("td");
-                      content.innerText = tt;
+                      content.innerText = parseInt(tt) + 1;
                       row.appendChild(content);
                       var content1 = document.createElement("td");
                       content1.innerText = results[tt];
@@ -136,19 +141,22 @@
     </script>
   </head>
   <body>
+    <h1>MOVIE RECOMMENDATION</h1>
     <div id="recommend">
-      <label for="userid">User ID: </label>
-      <input autofocus size="23" type="text" id="userid" value="" /><br />
-      <label for="itemid">No. of recommendations: </label>
-      <input size="23" type="text" id="num" value="" /><br />
-      <button class="btn default" onClick="clears();getMovies()">
-        Get Recommendations
-      </button>
+      <label for="userid">User Id:</label>
+      <input autofocus type="text" id="userid" /><br /><br /><br /><br />
+      <label for="itemid">No of recommendations:</label>
+      <input type="text" id="num" /><label style="font-size: medium"
+        >(default: 5)</label
+      ><br /><br /><br /><br />
+      <button class="btn default" id="bt" onClick="clears();getMovies()">
+        Get Recommendations</button
+      ><br /><br />
       <p id="result">
         Enter the user id and number of Recommendations and click Get
         Recommendations
       </p>
+      <div id="container"></div>
     </div>
-    <div id="container"></div>
   </body>
 </html>
