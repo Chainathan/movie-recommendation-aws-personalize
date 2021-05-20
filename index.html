@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Movie Recommendations</title>
+    <!-- <script type="text/javascript" src="script.js"></script> -->
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.899.0.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script type="text/javascript">
+      // Initialize the Amazon Cognito credentials provider
+      AWS.config.region = "us-east-1";
+      AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+        IdentityPoolId: "us-east-1:bab2daed-5cc0-4a49-99f6-9afad1f2b5e2",
+      });
+      // Function invoked by button click
+      function getMovies() {
+        // getting user id and item id(movie id) from input
+        var userid = document.getElementById("userid").value;
+        var num_rec = document.getElementById("num").value;
+        var n_rec = 5;
+        if (num_rec != "") n_rec = parseInt(num_rec);
+
+        var listCampResponse;
+        // JSON parameters for listCampaigns to get campaign ARN
+        var listCampParams = {};
+        // personalize client for accessing the API
+        var personalize = new AWS.Personalize({ apiVersion: "2018-05-22" });
+        // listCampaign from personalize
+        personalize.listCampaigns(
+          listCampParams,
+          (function () {
+            return function (err, data) {
+              if (err) console.log(err, err.stack);
+              // an error occurred
+              else {
+                console.log(data); // successful response
+                listCampResponse = data;
+              }
+              //console.log(listCampResponse);
+              //console.log(typeof(userid));
+              //console.log(listCampResponse.campaigns[0]["campaignArn"]);
+              var campaignArn = listCampResponse.campaigns[0]["campaignArn"];
+
+              // JSON parameters for getRecommendations method of Personalize Runtime
+              var getRecParams = {
+                campaignArn: campaignArn,
+                userId: userid,
+              };
+
+              // personalize runtime object
+              var personalizeruntime = new AWS.PersonalizeRuntime({
+                apiVersion: "2018-05-22",
+              });
+
+              var recommendationResponse;
+              // getRecommendations function
+              personalizeruntime.getRecommendations(
+                getRecParams,
+                function (err, data) {
+                  if (err) console.log(err, err.stack);
+                  // an error occurred
+                  else {
+                    console.log(data); // successful response
+                    recommendationResponse = data;
+                  }
+                  var movies = recommendationResponse["itemList"];
+                  console.log(movies[1]["itemId"]);
+                  //console.log(movies);
+                  var results = [];
+                  var dictt = {};
+                  d3.csv("movies.csv").then(function (data) {
+                    var count = 0;
+                    for (var i = 0; i < data.length; i++) {
+                      dictt[data[i].movieId] = data[i].title;
+                      //console.log(movies[1]['itemId']);
+                    }
+                    // console.log(data[1].movieId);
+                    // console.log(dictt[data[1].movieId]);
+                    // console.log(movies[1]['itemId']);
+                    // console.log(dictt[movies[1]['itemId']]);
+                    // console.log(movies.length);
+                    for (var i = 0; i < n_rec; i++) {
+                      // console.log(dictt[movies[i]['itemId']]);
+                      if (dictt[movies[i]["itemId"]] != null) {
+                        results[count++] = dictt[movies[i]["itemId"]];
+                        //console.log(results[count++]);
+                      }
+                    }
+                    var container = document.getElementById("container");
+                    var heading = document.createElement("span");
+                    heading.setAttribute("id", "heading");
+                    heading.innerText = "Recommended Movies: ";
+                    container.appendChild(heading);
+                    var table = document.createElement("table");
+                    table.setAttribute("caption", "Recommended Movies");
+                    table.setAttribute("id", "movieList");
+                    var head_row = document.createElement("tr");
+                    var title = document.createElement("th");
+                    title.innerText = "S.No";
+                    head_row.appendChild(title);
+                    var title1 = document.createElement("th");
+                    title1.innerText = "Title";
+                    head_row.appendChild(title1);
+                    table.appendChild(head_row);
+                    for (tt in results) {
+                      console.log(results[tt]);
+                      var row = document.createElement("tr");
+                      row.setAttribute("id", tt);
+                      var content = document.createElement("td");
+                      content.innerText = tt;
+                      row.appendChild(content);
+                      var content1 = document.createElement("td");
+                      content1.innerText = results[tt];
+                      row.append(content1);
+                      table.appendChild(row);
+                    }
+                    container.appendChild(table);
+                  });
+                }
+              );
+              // Getting movie titles from movies.csv file from S3
+              //console.log(recommendationResponse);
+            };
+          })()
+        );
+      }
+      function clears() {
+        var myobj = document.getElementById("container");
+        removeAllChildNodes(myobj);
+      }
+      function removeAllChildNodes(parent) {
+        while (parent.firstChild) {
+          parent.removeChild(parent.firstChild);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="recommend">
+      <label for="userid">User ID: </label>
+      <input autofocus size="23" type="text" id="userid" value="" /><br />
+      <label for="itemid">No. of recommendations: </label>
+      <input size="23" type="text" id="num" value="" /><br />
+      <button class="btn default" onClick="clears();getMovies()">
+        Get Recommendations
+      </button>
+      <p id="result">
+        Enter the user id and number of Recommendations and click Get
+        Recommendations
+      </p>
+    </div>
+    <div id="container"></div>
+  </body>
+</html>
