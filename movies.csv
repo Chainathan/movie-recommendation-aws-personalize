@@ -1,11 +1,11 @@
 movieId,title,genres
 1,Toy Story (1995),Adventure|Animation|Children|Comedy|Fantasy
 2,Jumanji (1995),Adventure|Children|Fantasy
-3,Grumpier Old Men (1995),Comedy|Action|Children
+3,Grumpier Old Men (1995),Comedy|Drama|Children
 4,Waiting to Exhale (1995),Comedy|Drama|Children|Action
 5,Father of the Bride Part II (1995),Action|Comedy
 6,Heat (1995),Action|Crime|Thriller
-7,Sabrina (1995),Action|Comedy|Children
+7,Sabrina (1995),Drama|Comedy|Children
 8,Tom and Huck (1995),Adventure|Children
 9,Sudden Death (1995),Action
 10,GoldenEye (1995),Action|Adventure|Thriller
@@ -13,7 +13,7 @@ movieId,title,genres
 12,Dracula: Dead and Loving It (1995),Comedy|Horror
 13,Balto (1995),Adventure|Animation|Children
 14,Nixon (1995),Drama
-15,Cutthroat Island (1995),Action|Adventure|Children
+15,Cutthroat Island (1995),Action|Drama|Children
 16,Casino (1995),Crime|Drama
 17,Sense and Sensibility (1995),Drama|Romance
 18,Four Rooms (1995),Action|Comedy
@@ -34,7 +34,7 @@ movieId,title,genres
 34,Babe (1995),Children|Drama
 36,Dead Man Walking (1995),Crime|Drama
 38,It Takes Two (1995),Children|Action|Comedy
-39,Clueless (1995),Action|Comedy|Children
+39,Clueless (1995),Drama|Comedy|Children
 40,"Cry, the Beloved Country (1995)",Drama
 41,Richard III (1995),Drama|War
 42,Dead Presidents (1995),Action|Crime|Drama
@@ -56,7 +56,7 @@ movieId,title,genres
 61,Eye for an Eye (1996),Drama|Thriller
 62,Mr. Holland's Opus (1995),Drama
 63,Don't Be a Menace to South Central While Drinking Your Juice in the Hood (1996),Action|Comedy|Crime
-64,Two if by Sea (1996),Comedy|Children|Action
+64,Two if by Sea (1996),Comedy|Children|Drama
 65,Bio-Dome (1996),Comedy
 66,Lawnmower Man 2: Beyond Cyberspace (1996),Action|Sci-Fi|Thriller
 68,French Twist (Gazon maudit) (1995),Comedy|Romance|Action
@@ -81,7 +81,7 @@ movieId,title,genres
 88,Black Sheep (1996),Comedy
 89,Nick of Time (1995),Action|Thriller
 92,Mary Reilly (1996),Drama|Horror|Thriller
-93,Vampire in Brooklyn (1995),Children|Comedy|Horror|Romance
+93,Vampire in Brooklyn (1995),Children|Comedy|Drama|Romance
 94,Beautiful Girls (1996),Comedy|Drama|Children
 95,Broken Arrow (1996),Action|Adventure|Thriller
 96,In the Bleak Midwinter (1995),Comedy|Drama
@@ -102,7 +102,7 @@ movieId,title,genres
 113,Before and After (1996),Drama|Mystery
 116,Anne Frank Remembered (1995),Documentary
 117,"Young Poisoner's Handbook, The (1995)",Crime|Drama
-118,If Lucy Fell (1996),Comedy|Romance
+118,If Lucy Fell (1996),Drama|Comedy|Romance
 119,"Steal Big, Steal Little (1995)",Comedy
 121,"Boys of St. Vincent, The (1992)",Drama
 122,Boomerang (1992),Comedy|Romance
@@ -110,7 +110,7 @@ movieId,title,genres
 125,Flirting With Disaster (1996),Comedy
 126,"NeverEnding Story III, The (1994)",Adventure|Children|Fantasy
 128,Jupiter's Wife (1994),Documentary
-129,Pie in the Sky (1996),Comedy|Romance
+129,Pie in the Sky (1996),Comedy|Romance|Drama
 132,Jade (1995),Thriller
 135,Down Periscope (1996),Comedy
 137,Man of the Year (1995),Documentary
@@ -520,7 +520,7 @@ movieId,title,genres
 605,One Fine Day (1996),Drama|Romance
 606,Candyman: Farewell to the Flesh (1995),Fantasy|Horror
 608,Fargo (1996),Comedy|Crime|Drama|Thriller
-609,Homeward Bound II: Lost in San Francisco (1996),Adventure|Children
+609,Homeward Bound II: Lost in San Francisco (1996),Adventure|Children|Drama
 610,Heavy Metal (1981),Action|Adventure|Animation|Horror|Sci-Fi
 611,Hellraiser: Bloodline (1996),Action|Horror|Sci-Fi
 612,"Pallbearer, The (1996)",Comedy
@@ -1494,7 +1494,7 @@ movieId,title,genres
 2017,Babes in Toyland (1961),Children|Fantasy|Musical
 2018,Bambi (1942),Animation|Children|Drama
 2019,Seven Samurai (Shichinin no samurai) (1954),Action|Adventure|Drama
-2020,Dangerous Liaisons (1988),Drama|Romance
+2020,Dangerous Liaisons (1988),Drama|Comedy|Romance
 2021,Dune (1984),Adventure|Sci-Fi
 2022,"Last Temptation of Christ, The (1988)",Drama
 2023,"Godfather: Part III, The (1990)",Crime|Drama|Mystery|Thriller
@@ -2767,7 +2767,7 @@ movieId,title,genres
 3703,"Road Warrior, The (Mad Max 2) (1981)",Action|Adventure|Sci-Fi|Thriller
 3704,Mad Max Beyond Thunderdome (1985),Action|Adventure|Sci-Fi
 3705,Bird on a Wire (1990),Action|Comedy|Romance
-3706,Angel Heart (1987),Film-Noir|Horror|Mystery|Thriller
+3706,Angel Heart (1987),Comedy|Action|Thriller
 3707,9 1/2 Weeks (Nine 1/2 Weeks) (1986),Drama|Romance
 3708,Firestarter (1984),Horror|Thriller
 3709,Sleepwalkers (1992),Horror
